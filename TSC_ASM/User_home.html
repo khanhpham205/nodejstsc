@@ -1,0 +1,457 @@
+<head>
+    <link rel="stylesheet" href="contents/style/main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<style>
+    nav {
+        height: var(--nav_height);
+        position: fixed;
+        top: 0;
+        width: 100%;
+
+        background-color: var(--primary-color);
+        z-index: 999;
+        color: white;
+        font-size: 17px;
+        > a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* thẻ tiếp theo tự cách bên trên bằng chiều cao của nav */
+        & + * {
+            margin-top: var(--nav_height);
+        }
+        #nav_logo {
+            width: 100%;
+            height: 100%;
+            grid-column: span 2;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        #Nav_searchbar {
+            grid-column: 9/10;
+        }
+    }
+
+    #banner {
+        position: relative;
+        cursor: none;
+        overflow: hidden;
+        user-select: none;
+        /* height: 80vh; */
+        height: 600px;
+        #handlebannerimg {
+            z-index: 2;
+            margin: 3%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            button {
+                user-select: none;
+                position: relative;
+                background: none;
+                border: none;
+                       
+                svg {
+                    width: 30px;
+                    aspect-ratio: 1/1;
+                    transform: rotate(-90deg);
+                    border-radius: 50%;
+                    border: solid grey 1px;
+                    circle {
+                        height: 100%;
+                        width: 100%;
+                        aspect-ratio: 1/1;
+                        stroke-width: 3;
+                        stroke: none;
+                        fill: none;
+                        stroke-linecap: round;
+                        stroke-dasharray: 305%;
+                        stroke-dashoffset: 301%;
+                        animation: none;
+                    }
+                }
+                span.bannerspan {
+                    color: grey;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                &.active svg>circle{
+                    stroke: white ;
+                    animation: loading 4s linear forwards ;
+                }
+                &.active >.bannerspan {
+                    color: white;
+                }
+            }
+        }
+        #bannercursor {
+            opacity: 1;
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            user-select: none;
+            svg {
+                border-radius: 50%;
+                transform: rotate(-90deg);
+                circle {
+                    stroke-width: 5;
+                    stroke: black;
+                    fill: white;
+                    stroke-linecap: round;
+                    stroke-dasharray: 305%;
+                    animation: none;
+                }
+                circle.active{
+                    animation: loading 4s linear forwards ;
+                }
+            }
+            span.bannerspan {
+                color: grey;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        #bannercursor.hide {
+            opacity: 0;
+        }
+        > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    }
+
+    @keyframes loading {
+        0%,
+        100% {
+            stroke-dashoffset: 301%;
+        }
+        99% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .product {
+        position: relative;
+        overflow: hidden;
+        >.discount{
+            position: absolute;
+            height: fit-content;
+            right:10%;
+            top:10%;
+            width: 50%;
+            height: 10%;
+            background-color: red;
+            text-align: center;
+            justify-content: center;
+            transform: rotate(45deg) translate(50%,-50%) ;
+            transform-origin: top right;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            &.nodiscount{
+                display: none;
+            }
+        }
+        >img {
+            user-select: none;
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+        >h1,h2,h3,h4,h5,h6{
+            color: var(--text-color);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            padding-top: 5px ;
+        }
+        >p{
+            
+            margin: 0;
+            padding-top: 5px;
+            color:red;
+            font-size: 17px;
+            font-weight: bold;
+            del{
+                font-size: 10px;
+                font-weight: normal;
+                color: grey;
+                &::after{ 
+                content: ' đ';
+            }
+            }
+            &::after{ 
+                content: ' đ';
+            }
+        }
+    }
+
+</style>
+
+<body>
+    <nav class="colsystem">
+        <a href="#" id="nav_logo">
+            <img src="contents/imgs/logo/2.png" />
+        </a>
+        <div id="Nav_link">san pham</div>
+        <div id="Nav_link">lien he</div>
+
+        <div id="Nav_searchbar">search</div>
+
+        <label class="toggle_button">
+            <input type="checkbox" id="themetoggle" />
+            <span class="slider round"></span>
+        </label>
+
+        <a href="">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </nav>
+
+    <section id="banner">
+        <img id="banner_img" src="" />
+        <div id="handlebannerimg">
+            <button class="">
+                <svg>
+                    <circle r="15" cx="50%" cy="50%"></circle>
+                </svg>
+                <span class="bannerspan">1</span>
+            </button>
+            <button class="">
+                <svg>
+                    <circle r="15" cx="50%" cy="50%"></circle>
+                </svg>
+                <span class="bannerspan">2</span>
+            </button>
+            <button class="">
+                <svg>
+                    <circle r="15" cx="50%" cy="50%"></circle>
+                </svg>
+                <span class="bannerspan">3</span>
+            </button>
+            <button class="">
+                <svg>
+                    <circle r="15" cx="50%" cy="50%"></circle>
+                </svg>
+                <span class="bannerspan">4</span>
+            </button>
+            <button class="" >
+                <svg>
+                    <circle r="15" cx="50%" cy="50%"></circle>
+                </svg>
+                <span class="bannerspan">5</span>
+            </button>
+        </div>
+        <div id="bannercursor" class="hide">
+            <svg width="50" height="50">
+                <circle class="active" r="25" cx="50%" cy="50%"></circle>
+            </svg>
+            <span class="bannerspan">></span>
+        </div>
+    </section>
+
+    <section id="proslist">
+        <div class="colsystem">
+            <!-- <div class="card product">
+                <div class="discount"> -50%</div>
+                <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg"/>
+                <h3>san pham 01 san pham 01 san pham 01 san </h3>
+                <p class="pricetag">123.000</p>
+            </div> -->
+        </div>
+    </section>
+</body>
+
+
+<script>
+    const bannerlist = [
+        "banner (1).png",
+        "banner (2).png",
+        "banner1.webp",
+        "banner (4).png",
+        "banner (5).png",
+    ];
+
+    const banner = document.getElementById("banner");
+    const bannercontroler = document.getElementById("handlebannerimg");
+    const cur = document.getElementById("bannercursor");
+
+    [...bannercontroler.children].forEach((e,index) => {
+        e.addEventListener('click',()=>{
+            changebanner(index)
+        })
+    });
+    let ban = 0;
+
+    banner.addEventListener("mousemove", (e) => {
+        cur.classList.remove('hide')
+        const rect = banner.getBoundingClientRect();
+        const x = e.clientX - rect.left - cur.offsetHeight/2;
+        const y = e.clientY - rect.top  - cur.offsetHeight/2;
+        cur.style.left = `${x}px`;
+        cur.style.top = `${y}px`;
+        cur.style.display = "block";
+        cur.children[1].innerText= (x<(banner.offsetWidth/2)) && '<'||'>';
+        cur.ariaValueText = (x < banner.offsetWidth / 2) ? '-1' : '1';
+        if(cur.dataset.isInBannerControler){
+            cur.classList.add('hide')
+        }
+    });
+    banner.addEventListener("mouseleave", () => {
+        cur.classList.add('hide');
+    });
+    handlebannerimg.addEventListener("mouseenter", () => {
+        cur.dataset.isInBannerControler=true;
+    });
+    handlebannerimg.addEventListener("mouseleave", () => {
+        delete cur.dataset.isInBannerControler;
+    });
+
+    cur.addEventListener("click", () => {
+        console.log(1,cur.getAttribute('aria-valuetext'))
+        changebanner(undefined, cur.getAttribute("aria-valuetext"));
+    });
+
+    let isAnimating = false;
+    async function changebanner(num, turn) {
+        if(isAnimating){
+            return;
+        }
+        isAnimating=true
+
+        await new Promise((resolve) => {
+            //______________Remove old______________
+            bannercontroler.children[ban].classList.remove("active");
+
+            // bannercontroler.children[ban].children[0].children[0].classList.remove("active");
+            // bannercontroler.children[ban].children[1].classList.remove("active");
+            cur.children[0].children[0].classList.remove("active");
+            //=======================================
+
+            if([0, 1, 2, 3, 4].includes(num)) {
+                ban = num;
+            } 
+            else {
+                ban = (ban + (Number(turn) || 1) + 5) % 5;
+            }
+
+            //______________Set new______________
+            setTimeout(() => {
+                document.getElementById("banner_img").src = `contents/imgs/banner/${bannerlist[ban]}`;
+                bannercontroler.children[ban].classList.add("active");
+                
+                bannercontroler.children[ban].children[0].children[0].classList.add("active");
+                bannercontroler.children[ban].children[1].classList.add("active");
+                cur.children[0].children[0].classList.add("active")
+            },10);
+            //===================================
+            banner_timer = 0;
+            setTimeout(resolve, 1000);//sau it nhat 1s ms co the goi lai ham
+        });
+        isAnimating=false;
+    }
+
+    var banner_timer = 40;
+    changebanner(0);
+    setInterval(function () {
+        if(banner_timer >= 40){
+            changebanner();
+        }else{
+            banner_timer++;
+        }
+    }, 100);
+
+</script>
+
+<script>
+    document.getElementById("themetoggle").addEventListener("change", (e) => {
+        let theme = "";
+        if (e.target.checked) {
+            theme = "dark";
+        } else {
+            theme = "light";
+        }
+        document.body.setAttribute("data-theme", theme);
+    });
+
+    if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+        document.getElementById("themetoggle").click();
+    }
+</script>
+<script>
+    function loadproduct(pros, box) {
+        for(const pro of pros){
+            const div = document.createElement("div");
+            const name = document.createElement("h3");
+            const cost = document.createElement("p");
+            const img = document.createElement("img");
+        
+            div.dataset.id_product = String(pro.id);
+            div.classList.add("product", "card");
+        
+            img.src = pro.img;
+            name.innerText = pro.name;
+            cost.innerText = String(pro.cost);
+        
+            div.append(img, name, cost);
+            box.append(div);
+        }
+    }
+
+    async function getpros(){
+        const re = await fetch('http://localhost:3000/products/',{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+        const data = await re.json();
+        let result = [];
+        
+        data.pros.forEach((productdata) => {
+            let po={
+                id: String(productdata._id),
+                name: String(productdata.name),
+                cost: Number(productdata.cost),
+                img: String(productdata.img),
+                discount: Number(productdata.discount),
+            };
+            result.push(po);
+        });
+        return result
+    }
+
+    // const data1 = getpros();
+    // console.log( getpros());
+    
+    // loadproduct(data,document.getElementById('proslist').children[0])
+    
+    
+</script>
+
+<script src="disc/userhome.js"></script>

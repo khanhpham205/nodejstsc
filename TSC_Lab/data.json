@@ -1,0 +1,34 @@
+{
+    "products": [
+        { 
+            "id": "1", 
+            "name": "a title", 
+            "views": 100 
+        },
+        {
+            "id": "2", 
+            "name": "another title", 
+            "views": 200
+        }
+    ],
+    "nhanvien":[
+        {
+            "id":1,
+            "name":"nhanvien1",
+            "gender":1,
+            "point":1    
+        },
+        {
+            "id":2,
+            "name":"nhanvien2",
+            "gender":1,
+            "point":1    
+        },
+        {
+            "id":3,
+            "name":"nhanvien3",
+            "gender":1,
+            "point":1    
+        }
+    ]
+}
